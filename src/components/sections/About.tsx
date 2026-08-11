@@ -86,12 +86,25 @@ export default function About() {
           {/* copy */}
           <div className="lg:col-span-7">
             <FadeIn>
-              <p className="text-xl leading-relaxed font-medium tracking-tight text-bone md:text-2xl">
-                {site.intro}
-              </p>
+              {(() => {
+                const [hook, qualifier] = site.intro.split("|");
+                return (
+                  <div className="max-w-[36rem]">
+                    <p className="text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-bone">
+                      {hook}
+                    </p>
+                    {qualifier && (
+                      <p className="mt-3 flex gap-3.5 text-base leading-snug tracking-tight text-mute md:text-lg">
+                        <span aria-hidden className="mt-[0.55em] h-px w-7 shrink-0 bg-acid" />
+                        <span>{qualifier}</span>
+                      </p>
+                    )}
+                  </div>
+                );
+              })()}
             </FadeIn>
 
-            <div className="mt-8 space-y-5">
+            <div className="mt-9 space-y-5">
               {site.about.map((para, i) => (
                 <FadeIn key={i} delay={0.06 * i}>
                   <p className="leading-relaxed text-mute">{para}</p>

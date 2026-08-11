@@ -20,8 +20,9 @@ export const site = {
   url: "https://mirzaabdullah.vercel.app",
   available: true,
   availabilityNote: "Open to senior full-stack & frontend roles",
+  // About-section lead. Split on "|": line 1 is the hook, line 2 the qualifier.
   intro:
-    "I build enterprise web products end to end — React and TypeScript on the front, FastAPI and Node on the back, AWS and Docker underneath. Two years in, I've shipped a developer platform Microsoft published, delivered GenAI and RAG accelerators presented at Microsoft Build, and cut load times by 90% on content-heavy applications.",
+    "I own the whole surface.|From the React component down to the Docker image that ships it.",
   about: [
     "I'm a Software Engineer II at Emumba in Islamabad, where I've spent the last two years working on the kind of frontend that doesn't fit in a tutorial — a networking-industry platform built alongside 45+ engineers, dashboards wired into machine-learning pipelines, and a full migration onto a shared design system.",
     "Somewhere along the way the work stopped stopping at the browser. I now own features from the React component down through the FastAPI endpoint, the RAG pipeline, the Docker image and the GitHub Actions workflow that ships it. PostgresHub — a learning platform I built solo for Microsoft Build — was the clearest version of that: requirements to production, published by Microsoft.",
@@ -470,6 +471,134 @@ export const interests = [
   "Martial arts",
   "Event management",
   "Public speaking",
+];
+
+// ---------------------------------------------------------------------------
+// Recommendations — scraped from LinkedIn. Verify/update `linkedIn` URLs.
+// ---------------------------------------------------------------------------
+
+export type Recommendation = {
+  name: string;
+  title: string;
+  relationship: string;
+  date: string;
+  body: string;
+  linkedIn: string;
+};
+
+export const recommendations: Recommendation[] = [
+  {
+    name: "Urooj Kamran",
+    title: "Building High-Performing Engineering Teams | HR Strategy | AI & Org Transformation",
+    relationship: "Manager",
+    date: "Jul 2026",
+    body: "I've actually known Abdullah since he joined as an intern, and it's been a privilege to watch his journey and growth over the years. Seeing him return as a full-time engineer felt like a natural continuation of someone who has always been driven by curiosity, passion, and a genuine desire to grow.\n\nWhat stands out most isn't just his technical ability; it's the energy he brings to the people around him. He's incredibly encouraging, consistently positive, and the kind of person who inspires others to believe that challenges are simply opportunities to learn. Whether he's taking on engineering work, leading as President of our Toastmasters Club, or sharing his love for poetry, he approaches everything with enthusiasm and authenticity.\n\nHe's someone who naturally lifts the people around him. His optimism is grounded in action, his can-do attitude is infectious, and he has a remarkable ability to make even ambitious goals feel achievable. When he's involved, you know he'll give his best and encourage everyone else to do the same.\n\nHe's an exceptional teammate, an inspiring leader, and above all, a genuinely wonderful person. He's meant for great things, and I have no doubt he will go above and beyond in making them happen!",
+    linkedIn: "https://www.linkedin.com/in/uroojulhudakamran/",
+  },
+  {
+    name: "Nimrah Ahmed",
+    title: "Head of Design and UX at Emumba",
+    relationship: "Colleague",
+    date: "Aug 2026",
+    body: "I had the opportunity to work with Abdullah, and one thing that always stood out was his initiative taking ability. He never stopped at simply delivering what was assigned, he would often take the extra step to refine, improve, and polish the solution without anyone asking. That level of ownership is rare.\n\nBeyond his technical skills, he's the kind of person who brings positive energy to the team, is always willing to help, and genuinely cares about delivering quality work. I'd happily recommend him to any team looking for a proactive and dependable developer.",
+    linkedIn: "https://www.linkedin.com/in/nimrah-ahmed-9b1390414/",
+  },
+  {
+    name: "Talha Munawar",
+    title: "Lead Software Engineer at Emumba",
+    relationship: "Manager",
+    date: "Jul 2026",
+    body: "I had the pleasure of leading Abdullah and working closely with him on our project.\n\nAbdullah quickly ramped up on the project, demonstrating a strong ability to understand new technologies, business requirements, and existing codebases with minimal guidance. He is a fast learner with a structured approach to problem-solving and consistently remains composed when tackling technical challenges.\n\nHe communicates effectively, collaborates well with the team, and takes ownership of his work. Abdullah consistently delivers high-quality solutions on time and is proactive in learning, asking the right questions, and contributing to technical discussions.\n\nHis technical aptitude, strong work ethic, and collaborative mindset make him a valuable addition to any engineering team. It has been a pleasure working with and managing him, and I highly recommend him for any software engineering role.",
+    linkedIn: "https://www.linkedin.com/in/talhamunawar/",
+  },
+  {
+    name: "Affan Syed",
+    title: "VP AI Engineering | Data | R&D | Emumba",
+    relationship: "Senior",
+    date: "Jul 2026",
+    body: "I worked with Mirza for about a year across a large delivery team for work we did for Microsoft, and came to know him well professionally and socially.\n\nMirza's strength is making the people around him better. He creates trust and cohesion, and on complex delivery that human glue is often what separates a team that ships from one that stalls. He backs it with polished work and a genuine eye for front-end design.\n\nWe are heading into a period where no single skill set is a guarantee, and the people who stand out will be the ones who can hold a team together and elevate everyone in it. Mirza has that in abundance, and several other non-technical skills as well. Some team out there needs exactly what he brings, and when he builds around those strengths, he will go far.\n\nI recommend him wholeheartedly.",
+    linkedIn: "https://www.linkedin.com/in/affan-ahmed-syed/",
+  },
+  {
+    name: "Ali Zaib",
+    title: "Senior Software Engineer @ Emumba | JavaScript · TypeScript · Web & Mobile",
+    relationship: "Mentor",
+    date: "Jul 2026",
+    body: "I've had the opportunity to work with Mirza Abdullah and watch him grow professionally over the years. He has a strong sense of ownership and approaches every task with responsibility and professionalism. One of his biggest strengths is his problem-solving mindset. He stays calm under pressure, thinks through challenges, and consistently finds practical solutions.\n\nBeyond his technical abilities, Mirza communicates clearly, collaborates well with others, and has excellent presentation skills. He's dependable, eager to learn, and always willing to go the extra mile to ensure things get done the right way. I'm confident he'll be a valuable asset to any team, and I highly recommend him for opportunities where ownership, teamwork, and execution matter.",
+    linkedIn: "https://www.linkedin.com/in/ali-zaib-2bba38193/",
+  },
+  {
+    name: "Faraya Baig",
+    title: "AI Software Engineer | Conversational AI | NLU | Generative AI",
+    relationship: "Colleague",
+    date: "Jul 2026",
+    body: "I had the opportunity to work with Abdullah for around five months at Emumba, where we collaborated on an AI-powered Agentic Mentor application. While I was responsible for the AI backend and agentic workflows, Abdullah led the frontend development.\n\nHe is a skilled engineer who consistently delivered clean, well-structured, and intuitive user interfaces. What I appreciated most was his ability to quickly understand product requirements, communicate effectively, and work collaboratively across the stack. He was proactive in resolving integration issues, and ensuring the frontend and backend worked seamlessly together.\n\nBeyond his technical skills, Abdullah is dependable, easy to work with, and always maintained a positive attitude, even when project requirements evolved. I enjoyed working with him and would be happy to collaborate with him again in the future.",
+    linkedIn: "https://www.linkedin.com/in/faraya-baig-b88755221/",
+  },
+  {
+    name: "Maheer Arshad",
+    title: "SDET @ Veeam | AWS Certified AI Practitioner | Content Writer",
+    relationship: "Colleague",
+    date: "Jul 2026",
+    body: "I had the pleasure of working with Abdullah on Microsoft's Agentic AI Solution Accelerator and other projects, where he consistently stood out as a skilled, dependable, and collaborative software engineer. He was always willing to help, whether it involved solving technical challenges, troubleshooting issues, or supporting the team through different stages of the project.\n\nI also worked under his leadership during his time as President of the Emumba Toastmasters Club. His communication, leadership, and ability to guide and motivate others were truly impressive. He is not only technically strong but also a supportive and effective leader.",
+    linkedIn: "https://www.linkedin.com/in/maheer-arshad/",
+  },
+  {
+    name: "Ayaz Ahmed Turk",
+    title: "Software Engineer | React.js · Next.js · TypeScript",
+    relationship: "Direct Report",
+    date: "Jul 2026",
+    body: "I had the pleasure of working alongside Mirza Abdullah Bin Abrar at Emumba and collaborating with him for nearly a year through the Emumba Toastmasters Club, where he served as Club President and I served as Vice President.\n\nMirza is an exceptional leader who leads by example. During his tenure as President, he played a key role in growing the club's membership and inspiring members to step into leadership roles with confidence. His ability to mentor others, foster collaboration, and create a supportive environment made a lasting impact on the club.\n\nWhat stands out most about Mirza is his reliability and genuine commitment to helping others grow. He is an excellent public speaker, a thoughtful mentor, and someone who consistently brings professionalism and positivity to every interaction.",
+    linkedIn: "https://www.linkedin.com/in/ayaz-ahmed-turk/",
+  },
+  {
+    name: "Asad Ullah",
+    title: "Software Engineer | React & Next.js Specialist | Node.js",
+    relationship: "Manager",
+    date: "Jul 2026",
+    body: "I had the pleasure of working with Abdullah on a project where I had the opportunity to mentor and collaborate with him closely. Throughout our time working together, he consistently demonstrated a strong willingness to learn, take feedback positively, and continuously improve his skills.\n\nHe is dependable, proactive, and approaches challenges with a problem-solving mindset. What impressed me most was his ability to quickly understand new concepts and apply them effectively. He never hesitated to share his ideas, took ownership of his tasks, and always put in the effort to deliver quality work.\n\nBeyond his technical abilities, he is a great team player. He communicates well, is respectful of others, and contributes positively to the team's environment. I am confident that he will continue to grow into an excellent software engineer.",
+    linkedIn: "https://www.linkedin.com/in/asad-ullah-shaheen/",
+  },
+  {
+    name: "Muhammad Zohaib",
+    title: "Senior Software Consultant II @10Pearls | MERN · React.js · Svelte · TypeScript",
+    relationship: "Mentor",
+    date: "Jul 2026",
+    body: "Mirza Abdullah Bin Abrar's eagerness to continuously learn, adapt, and explore new technologies is one of his strongest qualities. He consistently demonstrates a growth mindset and is always willing to take on new challenges to expand his knowledge and skills. His dedication, positive attitude, and commitment to delivering quality work make him a valuable member of any team. It has been a pleasure working with and managing Abdullah, and I highly recommend him for any opportunity where curiosity, ownership, and technical excellence are valued.",
+    linkedIn: "https://www.linkedin.com/in/zohaib0424/",
+  },
+  {
+    name: "Mufti Danyal Haroon",
+    title: "Cloud, Data & AI Transformation | AWS Alliances | GenAI | 2x AWS Certified",
+    relationship: "Cross-team",
+    date: "Jul 2026",
+    body: "I had the opportunity to know Abdullah during our time at Emumba and was consistently impressed by his professionalism and positive attitude. He carries himself with maturity, communicates effectively, and is someone who builds strong working relationships across teams.\n\nWhat stands out most is his willingness to learn, his structured approach to problem-solving, and his ability to remain composed when tackling challenges. He's proactive, dependable, and always brings a collaborative mindset to discussions.\n\nI'm confident Abdullah will be a valuable addition to any team that values ownership, adaptability, and strong interpersonal skills.",
+    linkedIn: "https://www.linkedin.com/in/mufti-danyal-haroon-29a05953/",
+  },
+  {
+    name: "Muhammad Shajjar",
+    title: "Software Engineer | Committed to transforming ideas into reality",
+    relationship: "Colleague",
+    date: "Jul 2026",
+    body: "A great communicator and someone I genuinely enjoy working with.\n\nI've worked with him closely and have seen how hardworking and responsible he is. He always takes ownership of his work and gives his best in every task.\n\nI highly recommend Mirza to any team looking for a passionate engineer who is dedicated, reliable, and always willing to learn and contribute.",
+    linkedIn: "https://www.linkedin.com/in/muhammad-shajjar/",
+  },
+  {
+    name: "Afnan Sohail",
+    title: "Software Engineer II @ Emumba",
+    relationship: "Direct Report",
+    date: "Jul 2026",
+    body: "I had the pleasure of working with Abdullah on a project, and it was a great experience from start to finish. He's technically strong, communicates clearly, and is always collaborative and reliable.\n\nWorking together was seamless, and his professionalism made a real difference. I'd gladly recommend Abdullah and would be happy to work with him again.",
+    linkedIn: "https://www.linkedin.com/in/afnansohail99/",
+  },
+  {
+    name: "Abdul Zahoor",
+    title: "Full Stack Engineer | React · Next.js · Node.js · Express · Vite",
+    relationship: "Mentor",
+    date: "Dec 2024",
+    body: "I highly recommend Abdullah for his exceptional learning ability and passion for software development. He consistently demonstrates responsibility and punctuality in completing assigned tasks. With his creativity and excellent communication skills, Abdullah would be an invaluable asset to anyone seeking these qualities.",
+    linkedIn: "https://www.linkedin.com/in/its4zahoor/",
+  },
 ];
 
 export const navLinks = [

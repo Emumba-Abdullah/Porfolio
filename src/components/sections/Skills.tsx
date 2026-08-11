@@ -100,43 +100,6 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* proficiency bars */}
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {[
-            { k: "react", label: "React / Next.js", pct: 95 },
-            { k: "typescript", label: "TypeScript", pct: 92 },
-            { k: "fastapi", label: "FastAPI / Node", pct: 82 },
-          ].map((b, i) => (
-            <FadeIn key={b.k} delay={i * 0.08}>
-              <div>
-                <div className="flex items-end justify-between">
-                  <span className="flex items-center gap-2 text-sm font-medium text-bone">
-                    <TechIcon
-                      name={b.k}
-                      className="size-4"
-                      style={{ color: techColor(b.k) }}
-                    />
-                    {b.label}
-                  </span>
-                  <span className="font-mono text-xs text-acid">{b.pct}%</span>
-                </div>
-                <div className="mt-3 h-1 overflow-hidden rounded-full bg-line">
-                  <motion.div
-                    className="h-full rounded-full bg-acid"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: b.pct / 100 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 1.4, delay: 0.1 + i * 0.1, ease: EASE }}
-                    style={{ transformOrigin: "left" }}
-                  />
-                </div>
-                <p className="mt-2 font-mono text-[10px] tracking-[0.14em] text-mute-2 uppercase">
-                  {techLabel(b.k)}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
       </div>
     </section>
   );

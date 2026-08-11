@@ -5,6 +5,7 @@ import Experience from "@/components/sections/Experience";
 import Hero from "@/components/sections/Hero";
 import Leadership from "@/components/sections/Leadership";
 import Projects from "@/components/sections/Projects";
+import Recommendations from "@/components/sections/Recommendations";
 import Skills from "@/components/sections/Skills";
 import Ticker from "@/components/sections/Ticker";
 import Cursor from "@/components/ui/Cursor";
@@ -29,6 +30,7 @@ export default function Home() {
         <Experience />
         <Skills />
         <Leadership />
+        <Recommendations />
         <Contact />
       </main>
     </>

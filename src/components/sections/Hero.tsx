@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { FiArrowDown, FiArrowUpRight } from "react-icons/fi";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa6";
@@ -13,9 +13,13 @@ import Magnetic from "../ui/Magnetic";
 import { SplitText } from "../ui/Reveal";
 
 const ICONS = { github: SiGithub, linkedin: FaLinkedinIn, mail: MdMailOutline } as const;
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "-14%"]);
@@ -50,7 +54,7 @@ export default function Hero() {
       </div>
 
       {/* ---- top meta row ---- */}
-      <motion.div className="container-x relative z-20" style={{ opacity: fade }}>
+      <motion.div className="container-x relative z-20" style={mounted ? { opacity: fade } : undefined}>
         <div className="flex items-start justify-between gap-6">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -89,7 +93,7 @@ export default function Hero() {
         {/* back line */}
         <motion.h1
           className="pointer-events-none absolute left-1/2 top-[6%] z-10 w-full -translate-x-1/2 px-4 text-center md:top-[2%]"
-          style={{ y: backY }}
+          style={mounted ? { y: backY } : undefined}
         >
           <SplitText
             text="MIRZA"
@@ -104,7 +108,7 @@ export default function Hero() {
         {/* portrait */}
         <motion.div
           className="relative z-20 h-[48vh] w-full max-w-[24rem] shrink-0 md:h-[62vh] md:max-w-[32rem]"
-          style={{ y: imgY, scale: imgScale }}
+          style={mounted ? { y: imgY, scale: imgScale } : undefined}
           initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.55, duration: 1.4, ease: EASE }}
@@ -134,7 +138,7 @@ export default function Hero() {
         {/* front line */}
         <motion.div
           className="pointer-events-none absolute bottom-[8%] left-1/2 z-30 w-full -translate-x-1/2 px-4 text-center"
-          style={{ y: frontY }}
+          style={mounted ? { y: frontY } : undefined}
         >
           <SplitText
             text="ABDULLAH"
@@ -152,7 +156,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.3, duration: 0.9, ease: EASE }}
-          style={{ opacity: fade }}
+          style={mounted ? { opacity: fade } : undefined}
         >
           <div className="container-x">
             <div className="max-w-[16rem] space-y-3 border-l border-acid/40 pl-4">
@@ -171,7 +175,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.4, duration: 0.9, ease: EASE }}
-          style={{ opacity: fade }}
+          style={mounted ? { opacity: fade } : undefined}
         >
           <div className="container-x flex flex-col items-end gap-3">
             {socials.map((s) => {
@@ -200,7 +204,7 @@ export default function Hero() {
       </div>
 
       {/* ---- bottom bar ---- */}
-      <motion.div className="container-x relative z-30 mt-6" style={{ opacity: fade }}>
+      <motion.div className="container-x relative z-30 mt-6" style={mounted ? { opacity: fade } : undefined}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

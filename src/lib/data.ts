@@ -293,7 +293,7 @@ export const skillGroups: SkillGroup[] = [
     title: "Core",
     caption: "What I reach for first",
     items: [
-      { name: "TypeScript", icon: "typescript", level: "92%" },
+      { name: "TypeScript", icon: "typescript" },
       { name: "JavaScript", icon: "javascript" },
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },

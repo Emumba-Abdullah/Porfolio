@@ -53,7 +53,10 @@ export default function Skills() {
 
         <div className="mt-14 space-y-px overflow-hidden rounded-2xl border border-line bg-line">
           {skillGroups.map((group, gi) => (
-            <div key={group.title} className="grid gap-6 bg-ink-2 p-6 md:grid-cols-12 md:gap-8 md:p-8">
+            <div
+              key={group.title}
+              className="grid grid-cols-1 gap-6 bg-ink-2 p-5 sm:p-6 md:grid-cols-12 md:gap-8 md:p-8"
+            >
               <FadeIn y={20} delay={gi * 0.05} className="md:col-span-3">
                 <div>
                   <div className="flex items-baseline gap-3">

@@ -16,7 +16,7 @@ export default function Leadership() {
           note="Most of my best engineering work came from being willing to run the room, not just the build."
         />
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {leadership.map((item, i) => (
             <article
               key={item.title}

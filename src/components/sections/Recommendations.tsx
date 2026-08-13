@@ -70,7 +70,10 @@ export default function Recommendations() {
         <div
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16"
+          // Both tracks are floored at 0: the attribution line holds a long
+          // `truncate` (nowrap) job title whose min-content would otherwise
+          // size the track and push the whole document wider than the viewport.
+          className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16"
         >
           {/* ---------------------------------------------------------- */}
           {/* Name index                                                  */}
@@ -81,7 +84,7 @@ export default function Recommendations() {
             aria-orientation="vertical"
             tabIndex={0}
             onKeyDown={onKey}
-            className="order-2 -mx-2 rounded-xl outline-none focus-visible:ring-1 focus-visible:ring-acid/40 lg:order-1"
+            className="order-2 -mx-2 min-w-0 rounded-xl outline-none focus-visible:ring-1 focus-visible:ring-acid/40 lg:order-1"
           >
             {recommendations.map((r, i) => {
               const on = i === active;
@@ -105,7 +108,7 @@ export default function Recommendations() {
                   />
                   <span
                     className={cn(
-                      "flex items-baseline gap-3 pl-4 transition-transform duration-500 ease-[var(--ease-out-expo)]",
+                      "flex min-w-0 items-baseline gap-3 pl-4 transition-transform duration-500 ease-[var(--ease-out-expo)]",
                       on ? "translate-x-1" : "group-hover:translate-x-1",
                     )}
                   >
@@ -147,7 +150,7 @@ export default function Recommendations() {
           {/* ---------------------------------------------------------- */}
           {/* Spotlight panel                                             */}
           {/* ---------------------------------------------------------- */}
-          <div className="relative order-1 min-h-[24rem] lg:order-2">
+          <div className="relative order-1 min-w-0 lg:order-2 lg:min-h-[24rem]">
             {/* oversized ghost quote mark */}
             <span
               aria-hidden
@@ -190,13 +193,13 @@ export default function Recommendations() {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
-                  className="group mt-10 flex items-center gap-4 border-t border-line pt-6"
+                  className="group mt-10 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-line pt-6"
                 >
                   <span className="grid size-11 shrink-0 place-items-center rounded-full border border-acid/25 bg-acid/[0.08] font-mono text-xs font-bold text-acid transition-colors duration-500 group-hover:bg-acid group-hover:text-black">
                     {initialsOf(rec.name)}
                   </span>
 
-                  <span className="min-w-0 flex-1">
+                  <span className="min-w-[11rem] flex-1">
                     <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
                       <span className="font-semibold tracking-tight text-bone transition-colors duration-300 group-hover:text-acid">
                         {rec.name}

@@ -144,7 +144,7 @@ export default function Experience() {
         </div>
 
         {/* education + certs */}
-        <div className="mt-20 grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-20 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <FadeIn>
               <p className="mono-label">Education</p>

@@ -69,7 +69,7 @@ export default function Contact() {
               text="LET'S BUILD"
               by="char"
               stagger={0.035}
-              className="display text-[clamp(3rem,13vw,11rem)] text-bone"
+              className="display text-[clamp(2.5rem,12vw,11rem)] text-bone"
             />
           </span>
           <span className="block">
@@ -78,12 +78,12 @@ export default function Contact() {
               by="char"
               stagger={0.035}
               delay={0.1}
-              className="display text-[clamp(3rem,13vw,11rem)] text-mute-2"
+              className="display text-[clamp(2.5rem,12vw,11rem)] text-mute-2"
             />
           </span>
         </h2>
 
-        <div className="mt-12 grid gap-10 border-t border-line pt-10 lg:grid-cols-12">
+        <div className="mt-12 grid grid-cols-1 gap-10 border-t border-line pt-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <FadeIn>
               <p className="max-w-md leading-relaxed text-mute">
@@ -126,14 +126,14 @@ export default function Contact() {
                 <a
                   href={`mailto:${site.email}`}
                   data-cursor="hover"
-                  className="group block text-lg tracking-tight text-bone transition-colors hover:text-acid"
+                  className="group block break-all text-base tracking-tight text-bone transition-colors hover:text-acid sm:text-lg"
                 >
                   {site.email}
                 </a>
                 <a
                   href={`tel:${site.phoneHref}`}
                   data-cursor="hover"
-                  className="group block text-lg tracking-tight text-bone transition-colors hover:text-acid"
+                  className="group block text-base tracking-tight text-bone transition-colors hover:text-acid sm:text-lg"
                 >
                   {site.phone}
                 </a>

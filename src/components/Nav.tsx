@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowUpRight, FiMenu, FiX } from "react-icons/fi";
 import { navLinks, site, socials } from "@/lib/data";
+import { setScrollLocked } from "./providers/SmoothScroll";
 import { cn, EASE, EASE_IN_OUT } from "@/lib/utils";
 import Magnetic from "./ui/Magnetic";
 
@@ -13,6 +14,12 @@ export default function Nav() {
   const [up, setUp] = useState(true);
   const [open, setOpen] = useState(false);
   const [last, setLast] = useState(0);
+
+  // The overlay covers the viewport — don't let the page scroll behind it.
+  useEffect(() => {
+    setScrollLocked(open);
+    return () => setScrollLocked(false);
+  }, [open]);
 
   useMotionValueEvent(scrollY, "change", (v) => {
     setSolid(v > 40);
@@ -95,7 +102,7 @@ export default function Nav() {
                 onClick={() => setOpen((o) => !o)}
                 data-cursor="hover"
                 aria-label={open ? "Close menu" : "Open menu"}
-                className="grid size-10 place-items-center rounded-full border border-line text-bone transition-colors hover:border-acid hover:text-acid md:hidden"
+                className="grid size-11 place-items-center rounded-full border border-line text-bone transition-colors hover:border-acid hover:text-acid md:hidden"
               >
                 {open ? <FiX className="size-4" /> : <FiMenu className="size-4" />}
               </button>
@@ -108,13 +115,13 @@ export default function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col justify-between bg-ink px-6 pb-10 pt-28 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-between gap-10 overflow-y-auto overscroll-contain bg-ink px-6 pt-24 pb-10 md:hidden"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.65, ease: EASE_IN_OUT }}
           >
-            <ul className="space-y-1">
+            <ul className="shrink-0 space-y-1">
               {navLinks.map((l, i) => (
                 <motion.li
                   key={l.href}
@@ -126,7 +133,7 @@ export default function Nav() {
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="display flex items-baseline justify-between py-4 text-4xl text-bone"
+                    className="display flex items-baseline justify-between gap-4 py-3.5 text-3xl text-bone sm:py-4 sm:text-4xl"
                   >
                     {l.label}
                     <span className="mono-label">0{i + 1}</span>
@@ -139,7 +146,7 @@ export default function Nav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.45 }}
-              className="space-y-4"
+              className="shrink-0 space-y-4"
             >
               <a
                 href={site.resume}

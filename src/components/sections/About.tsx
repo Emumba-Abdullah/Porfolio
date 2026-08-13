@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { interests, site, stats } from "@/lib/data";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 import { Counter, FadeIn, LineGrow } from "../ui/Reveal";
 import SectionHeading from "../ui/SectionHeading";
 import Magnetic from "../ui/Magnetic";
@@ -14,6 +15,9 @@ export default function About() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
   const rotate = useTransform(scrollYProgress, [0, 1], [-3, 3]);
+  // A rotated box is ~18px wider than its layout box at this aspect ratio, which
+  // is more slack than a 320px viewport has. Keep the tilt for wide screens only.
+  const canTilt = useMediaQuery("(min-width: 1024px)");
 
   return (
     <section id="about" className="relative py-24 md:py-32">
@@ -24,11 +28,11 @@ export default function About() {
           title={"Full-stack, in the\nliteral sense"}
         />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           {/* portrait */}
           <div ref={ref} className="lg:col-span-5">
             <motion.div
-              style={{ y, rotate }}
+              style={canTilt ? { y, rotate } : { y }}
               className="relative mx-auto aspect-[4/5] w-full max-w-sm lg:max-w-none"
             >
               <div className="absolute inset-0 overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-ink-3 to-ink">
@@ -157,7 +161,7 @@ export default function About() {
           {stats.map((s, i) => (
             <div
               key={s.label}
-              className="group relative bg-ink-2 p-6 transition-colors duration-500 hover:bg-ink-3 md:p-8"
+              className="group relative bg-ink-2 p-5 transition-colors duration-500 hover:bg-ink-3 sm:p-6 md:p-8"
             >
               <span
                 aria-hidden
@@ -169,7 +173,7 @@ export default function About() {
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="display text-5xl text-bone md:text-6xl">
+                <p className="display text-[2.25rem] text-bone sm:text-5xl md:text-6xl">
                   <Counter value={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-3 text-xs leading-relaxed whitespace-pre-line text-mute">

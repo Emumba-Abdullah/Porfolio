@@ -5,6 +5,21 @@ import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+/** Live Lenis instance, so overlays can freeze the page behind them. */
+let current: Lenis | null = null;
+
+/**
+ * Freeze/unfreeze page scrolling. Falls back to an overflow lock when Lenis
+ * isn't running (reduced-motion users get no instance at all).
+ */
+export function setScrollLocked(locked: boolean) {
+  if (current) {
+    if (locked) current.stop();
+    else current.start();
+  }
+  document.documentElement.style.overflow = locked ? "hidden" : "";
+}
+
 /**
  * Lenis smooth scroll, wired into GSAP's ticker so ScrollTrigger stays in sync.
  * Also intercepts in-page anchor clicks so nav links animate instead of jumping.
@@ -27,6 +42,7 @@ export default function SmoothScroll() {
       wheelMultiplier: 1,
     });
 
+    current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const raf = (time: number) => lenis.raf(time * 1000);
@@ -57,6 +73,7 @@ export default function SmoothScroll() {
       window.removeEventListener("resize", onResize);
       gsap.ticker.remove(raf);
       lenis.destroy();
+      current = null;
     };
   }, []);
 

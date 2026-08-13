@@ -19,7 +19,11 @@ export default function Projects() {
   const track = useRef<HTMLDivElement>(null);
   const [shift, setShift] = useState(0);
 
-  const wide = useMediaQuery("(min-width: 1024px)");
+  // The pinned track lives inside a 100svh box with `overflow-hidden`, so it
+  // only works when the viewport is tall enough to hold a full card plus the
+  // progress rail. On short laptop screens we fall back to the vertical stack
+  // instead of cropping the cards.
+  const wide = useMediaQuery("(min-width: 1024px) and (min-height: 720px)");
   const reduce = useReducedMotion();
   const horizontal = wide && !reduce;
 
@@ -44,6 +48,9 @@ export default function Projects() {
     };
   }, [horizontal]);
 
+  // `wrap` is rendered in both branches so this target is always hydrated —
+  // motion throws "Target ref is defined but not hydrated" otherwise, since the
+  // first client render is always the non-horizontal fallback.
   const { scrollYProgress } = useScroll({
     target: wrap,
     offset: ["start start", "end end"],
@@ -62,10 +69,18 @@ export default function Projects() {
         />
       </div>
 
-      {horizontal ? (
-        <div ref={wrap} style={{ height: `calc(100vh + ${shift}px)` }} className="relative">
-          <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
-            <motion.div ref={track} style={{ x }} className="flex gap-6 pl-8 pr-16 xl:pl-16">
+      <div
+        ref={wrap}
+        className="relative"
+        style={horizontal ? { height: `calc(100svh + ${shift}px)` } : undefined}
+      >
+        {horizontal ? (
+          <div className="sticky top-0 flex h-[100svh] flex-col justify-center gap-10 overflow-hidden py-8">
+            <motion.div
+              ref={track}
+              style={{ x }}
+              className="flex min-h-0 shrink gap-6 pl-8 pr-16 xl:pl-16"
+            >
               {projects.map((p) => (
                 <Card key={p.index} p={p} />
               ))}
@@ -73,7 +88,7 @@ export default function Projects() {
             </motion.div>
 
             {/* progress rail */}
-            <div className="container-x mt-10">
+            <div className="container-x shrink-0">
               <div className="flex items-center gap-4">
                 <span className="mono-label shrink-0">Drag / scroll</span>
                 <div className="relative h-px flex-1 bg-line">
@@ -86,14 +101,14 @@ export default function Projects() {
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div ref={track} className="container-x mt-12 flex flex-col gap-6">
-          {projects.map((p) => (
-            <Card key={p.index} p={p} stacked />
-          ))}
-        </div>
-      )}
+        ) : (
+          <div ref={track} className="container-x mt-12 flex flex-col gap-6">
+            {projects.map((p) => (
+              <Card key={p.index} p={p} stacked />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
@@ -117,7 +132,9 @@ function Card({ p, stacked = false }: { p: Project; stacked?: boolean }) {
         data-cursor-label={p.href ? "Visit" : undefined}
         className={cn(
           "group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-ink-2 p-6 transition-colors duration-500 hover:border-acid/40 md:p-8",
-          !stacked && "min-h-[30rem]",
+          // Never taller than the pinned viewport box, or the card gets cropped
+          // top and bottom by the `overflow-hidden` on short screens.
+          !stacked && "min-h-[min(30rem,calc(100svh-9rem))]",
         )}
       >
         {/* hover wash */}

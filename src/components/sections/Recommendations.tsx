@@ -153,7 +153,7 @@ export default function Recommendations() {
               aria-hidden
               className="display pointer-events-none absolute -top-8 -left-2 -z-10 text-[11rem] leading-none text-bone/[0.035] select-none md:-top-12 md:text-[15rem]"
             >
-              "
+              &quot;
             </span>
 
             {/* keyed remount rather than <AnimatePresence mode="wait"> — an exit

@@ -5,7 +5,7 @@ import { marqueeIcons, skillGroups } from "@/lib/data";
 import { EASE } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import { FadeIn } from "../ui/Reveal";
-import { TechIcon, techColor, techLabel } from "../ui/TechIcon";
+import { TechIcon, techColor } from "../ui/TechIcon";
 
 export default function Skills() {
   return (
@@ -93,6 +93,11 @@ export default function Skills() {
                       <span className="relative text-[13px] font-medium text-mute transition-colors duration-300 group-hover:text-bone">
                         {item.name}
                       </span>
+                      {item.level && (
+                        <span className="relative rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-acid">
+                          {item.level}
+                        </span>
+                      )}
                     </motion.div>
                   ))}
               </div>

@@ -19,7 +19,7 @@ export const site = {
   // TODO: set this to your deployed domain before going live
   url: "https://mirzaabdullah.vercel.app",
   available: true,
-  availabilityNote: "Open to senior full-stack & frontend roles",
+  availabilityNote: "Open to mid-level software engineering roles",
   // About-section lead. Split on "|": line 1 is the hook, line 2 the qualifier.
   intro:
     "I own the whole surface.|From the React component down to the Docker image that ships it.",
@@ -285,7 +285,7 @@ export const projects: Project[] = [
 export type SkillGroup = {
   title: string;
   caption: string;
-  items: { name: string; icon: string }[];
+  items: { name: string; icon: string; level?: string }[];
 };
 
 export const skillGroups: SkillGroup[] = [
@@ -293,7 +293,7 @@ export const skillGroups: SkillGroup[] = [
     title: "Core",
     caption: "What I reach for first",
     items: [
-      { name: "TypeScript", icon: "typescript" },
+      { name: "TypeScript", icon: "typescript", level: "92%" },
       { name: "JavaScript", icon: "javascript" },
       { name: "React", icon: "react" },
       { name: "Next.js", icon: "nextjs" },
